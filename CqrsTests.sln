@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CqrsTests", "CqrsTests\CqrsTests.csproj", "{40666A91-4022-409C-BF97-BCCC2AB2B094}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CqrsTests", "source\CqrsTests\CqrsTests.csproj", "{40666A91-4022-409C-BF97-BCCC2AB2B094}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
