@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace CqrsTests.Infrastructure.Events
+namespace Infrastructure.Events
 {
     public interface IEventHandler {}
     public interface IEventHandler<T> : IEventHandler

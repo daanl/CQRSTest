@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CqrsTests.Infrastructure.Events
+namespace Infrastructure.Events
 {
     public abstract class VersionedEvent : IVersionedEvent
     {

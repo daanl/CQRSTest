@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CqrsTests.Infrastructure.Events
+namespace Infrastructure.Events
 {
     public class EventSourced : IEventSourced
     {

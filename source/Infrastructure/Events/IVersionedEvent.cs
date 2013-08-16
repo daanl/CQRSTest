@@ -1,4 +1,4 @@
-﻿namespace CqrsTests.Infrastructure.Events
+﻿namespace Infrastructure.Events
 {
     public interface IVersionedEvent : IEvent
     {

@@ -1,4 +1,4 @@
-﻿namespace CqrsTests.Infrastructure.Commands
+﻿namespace Infrastructure.Commands
 {
     public interface ICommand
     {

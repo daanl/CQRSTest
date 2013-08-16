@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace CqrsTests.Infrastructure.Commands
+namespace Infrastructure.Commands
 {
     public interface ICommandHandler {}
     public interface ICommandHandler<T> : ICommandHandler

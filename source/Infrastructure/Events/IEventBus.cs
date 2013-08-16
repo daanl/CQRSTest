@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CqrsTests.Infrastructure.Events
+namespace Infrastructure.Events
 {
     public interface IEventBus
     {

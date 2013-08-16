@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="CQRS.Example">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <link href="~/Public/Styles/bootstrap.css" rel="stylesheet" />
+        <link href="~/Public/Styles/custom.css" rel="stylesheet" />
+        
+        <script src="~/Public/Scripts/jquery-2.0.3.min.js"></script>
+        <script src="~/Public/Scripts/jquery.signalR-2.0.0-beta2.js"></script>
+        <script src="~/Public/Scripts/bootstrap.js"></script>
+        <script src="~/Public/Scripts/angular.js"></script>
+        <script src="/signalr/hubs" type="text/javascript"></script>
+  
+        <script type="text/javascript">
+            var hubConnection = $.connection.hub.start();
+        </script>
+
+        <script src="~/Public/Scripts/App/app.js"></script>
+        <script src="~/Public/Scripts/App/controllers/orders.js"></script>
+        
+    </head>
+    <body>
+        <div class="container">
+            <div>
+                <h3 class="muted">Cqrs example</h3>
+            </div>
+            
+            <hr/>
+
+            @RenderBody()
+
+            <hr>
+        </div>
+    </body>
+</html>
