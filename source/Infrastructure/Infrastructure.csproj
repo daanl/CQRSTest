@@ -69,30 +69,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\CommandBus.cs" />
-    <Compile Include="Commands\ICommand.cs" />
-    <Compile Include="Commands\ICommandHandler.cs" />
-    <Compile Include="Events\EventBus.cs" />
-    <Compile Include="Events\EventSourced.cs" />
-    <Compile Include="Events\IEvent.cs" />
-    <Compile Include="Events\IEventBus.cs" />
-    <Compile Include="Events\IEventHandler.cs" />
-    <Compile Include="Events\IEventSourced.cs" />
-    <Compile Include="Events\IVersionedEvent.cs" />
-    <Compile Include="Events\VersionedEvent.cs" />
+    <Compile Include="CQRS\Commands\CommandBus.cs" />
+    <Compile Include="CQRS\Commands\ICommand.cs" />
+    <Compile Include="CQRS\Commands\ICommandHandler.cs" />
+    <Compile Include="CQRS\Events\EventBus.cs" />
+    <Compile Include="CQRS\Events\EventSourced.cs" />
+    <Compile Include="CQRS\Events\IEvent.cs" />
+    <Compile Include="CQRS\Events\IEventBus.cs" />
+    <Compile Include="CQRS\Events\IEventHandler.cs" />
+    <Compile Include="CQRS\Events\IEventSourced.cs" />
+    <Compile Include="CQRS\Events\IVersionedEvent.cs" />
+    <Compile Include="CQRS\Events\VersionedEvent.cs" />
+    <Compile Include="CQRS\Serializers\IEventSerializer.cs" />
+    <Compile Include="CQRS\Serializers\JsonNetEventSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignalR\NinjectSignalRDependencyResolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\jquery-1.6.4-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.6.4.js" />
-    <Content Include="Scripts\jquery-1.6.4.min.js" />
-    <Content Include="Scripts\jquery.signalR-1.1.3.js" />
-    <Content Include="Scripts\jquery.signalR-1.1.3.min.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

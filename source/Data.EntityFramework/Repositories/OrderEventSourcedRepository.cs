@@ -1,24 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Orders;
+using Domain.Orders.EventSourcing;
+using Infrastructure.CQRS.Serializers;
 using Infrastructure.Events;
-using Raven.Client;
 
-namespace Domain.Orders.EventSourcing
+namespace Data.EntityFramework.Repositories
 {
     public class OrderEventSourcedRepository : IOrderEventSourcedRepository
     {
-        private readonly IAsyncDocumentSession _session;
+        private readonly CqrsContext _context;
         private readonly IEventBus _eventBus;
+        private readonly IEventSerializer _eventSerializer;
 
         public OrderEventSourcedRepository(
-            IAsyncDocumentSession session,
-            IEventBus eventBus
+            CqrsContext context,
+            IEventBus eventBus,
+            IEventSerializer eventSerializer
         )
         {
-            _session = session;
+            _context = context;
             _eventBus = eventBus;
+            _eventSerializer = eventSerializer;
         }
 
         public async Task Save(Order order, Guid correlationId)
@@ -32,32 +38,32 @@ namespace Domain.Orders.EventSourcing
                     SourceId = e.SourceId,
                     Version = e.Version,
                     CorrelationId = correlationId,
-                    //Payload = e
+                    Payload = await _eventSerializer.Serialize(e)
                 };
 
-                await _session.StoreAsync(ev);
+                _context.OrdersEvents.Add(ev);
             }
 
-            await _session.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
             await _eventBus.Publish(events, correlationId);
         }
 
         public async Task<Order> Get(Guid gameServerId)
         {
-            var constructor = typeof(Order).GetConstructor(new[] { typeof(Guid), typeof(IEnumerable<IVersionedEvent>) });
+            var constructor = typeof(Order).GetConstructor(new[] { typeof(Guid) });
             if (constructor == null)
             {
-                throw new InvalidCastException("Type T must have a constructor with the following signature: .ctor(Guid, IEnumerable<IVersionedEvent>)");
+                throw new InvalidCastException("Type T must have a constructor with the following signature: .ctor(Guid)");
             }
 
-            var events = await _session.Query<OrderEvent>()
+            var events = await _context.OrdersEvents
                                  .Where(x => x.SourceId == gameServerId)
                                  .OrderBy(x => x.Version)
                                  .ToListAsync();
                                  
 
-            var gameServer = (Order)constructor.Invoke(new object[] { gameServerId, events.Select(x => x.Payload) });
+            var gameServer = (Order)constructor.Invoke(new object[] { gameServerId, events.Select(async x => await _eventSerializer.Deserialize<IVersionedEvent>(x.Payload)) });
 
             return gameServer;
         }

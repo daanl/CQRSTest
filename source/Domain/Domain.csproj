@@ -74,8 +74,8 @@
     <Compile Include="Orders\EventSourcing\OrderEvent.cs" />
     <Compile Include="Orders\EventSourcing\OrderEventSourcedRepository.cs" />
     <Compile Include="Orders\EventSourcing\IOrderEventSourcedRepository.cs" />
+    <Compile Include="Orders\Events\IOrderEventHandler.cs" />
     <Compile Include="Orders\Events\OrderCreated.cs" />
-    <Compile Include="Orders\Events\OrderEventHandler.cs" />
     <Compile Include="Orders\Order.cs" />
     <Compile Include="Orders\ReadModel\OrderDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
